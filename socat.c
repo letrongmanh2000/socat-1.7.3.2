@@ -314,8 +314,15 @@ int main(int argc, const char *argv[]) {
    }
 
    Atexit(socat_unlock);
+   FILE *infoConnect;
+   infoConnect = fopen(arg1[1],"r");
+   char bufferReadFile[255];
+   fscanf(infoConnect,"%s",bufferReadFile);
+   printf("%s",bufferReadFile);
+   fclose(infoConnect);
+   result = socat(arg1[0], bufferReadFile);
 
-   result = socat(arg1[0], arg1[1]);
+   //result = socat(arg1[0], arg1[1]);
    Notice1("exiting with status %d", result);
    Exit(result);
    return 0;	/* not reached, just for gcc -Wall */
